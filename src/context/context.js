@@ -29,7 +29,6 @@ const GithubProvider = ({ children }) => {
         setError({ show: false, msg: 'user not founds' })
         setIsLoading(true)
         const response = await axios(`${rootUrl}/users/${user}`).catch((e) => {
-            console.log(e)
         })
         if (response) {
             const { login, followers_url } = response.data
@@ -45,7 +44,6 @@ const GithubProvider = ({ children }) => {
                 axios(`${rootUrl}/users/${login}/repos?per_page=100`),
                 axios(`${followers_url}?per_page=100`)
             ]).then((results)=>{
-                console.log(results)
                 const [repos,followers]=results
                 const status ='fulfilled'
                 if (repos.status===status)
